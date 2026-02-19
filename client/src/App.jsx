@@ -16,6 +16,17 @@ function App() {
     }
   }
 
+  const handleDecimal = () => {
+    if (waitingForSecond) {
+      setDisplay('0.')
+      setWaitingForSecond(false)
+      return
+    }
+    if (!display.includes('.')) {
+      setDisplay(display + '.')
+    }
+  }
+
   const handleOperator = (op) => {
     setFirstNum(parseFloat(display))
     setOperator(op)
@@ -32,6 +43,10 @@ function App() {
       case '/': result = firstNum / second; break
       default: return
     }
+    
+    // Round to prevent weird floating point issues (e.g., 0.1 + 0.2 = 0.30000000000000004)
+    result = Math.round(result * 100000000) / 100000000
+    
     setDisplay(String(result))
     setOperator(null)
     setFirstNum(null)
@@ -45,36 +60,34 @@ function App() {
   }
 
   return (
-    <div className="ugly-container">
-      <h1 className="ugly-title">💀 CALCULATER 💀</h1>
-      <marquee className="ugly-marquee">~~~ BEST CALCULATOR EVER ~~~ CLICK BUTTONS TO DO MATH ~~~</marquee>
-      
-      <div className="ugly-display">{display}</div>
-      
-      <div className="ugly-buttons">
-        <button className="btn-num btn-1" onClick={() => handleNumber('7')}>7</button>
-        <button className="btn-num btn-2" onClick={() => handleNumber('8')}>8</button>
-        <button className="btn-num btn-3" onClick={() => handleNumber('9')}>9</button>
-        <button className="btn-op" onClick={() => handleOperator('/')}>÷</button>
-        
-        <button className="btn-num btn-4" onClick={() => handleNumber('4')}>4</button>
-        <button className="btn-num btn-5" onClick={() => handleNumber('5')}>5</button>
-        <button className="btn-num btn-6" onClick={() => handleNumber('6')}>6</button>
-        <button className="btn-op" onClick={() => handleOperator('*')}>×</button>
-        
-        <button className="btn-num btn-7" onClick={() => handleNumber('1')}>1</button>
-        <button className="btn-num btn-8" onClick={() => handleNumber('2')}>2</button>
-        <button className="btn-num btn-9" onClick={() => handleNumber('3')}>3</button>
-        <button className="btn-op" onClick={() => handleOperator('-')}>-</button>
-        
-        <button className="btn-clear" onClick={clear}>C</button>
-        <button className="btn-num btn-0" onClick={() => handleNumber('0')}>0</button>
-        <button className="btn-equals" onClick={calculate}>=</button>
-        <button className="btn-op" onClick={() => handleOperator('+')}>+</button>
+    <div className="calculator-container">
+      <div className="calculator-display">
+        {display}
       </div>
       
-      <p className="ugly-footer">© 1999 made with MS Paint</p>
-      <blink className="ugly-blink">⚠️ UNDER CONSTRUCTION ⚠️</blink>
+      <div className="calculator-keypad">
+        <button className="btn-action btn-clear" onClick={clear}>C</button>
+        <button className="btn-action" onClick={() => handleOperator('/')}>÷</button>
+        
+        <button className="btn-num" onClick={() => handleNumber('7')}>7</button>
+        <button className="btn-num" onClick={() => handleNumber('8')}>8</button>
+        <button className="btn-num" onClick={() => handleNumber('9')}>9</button>
+        <button className="btn-op" onClick={() => handleOperator('*')}>×</button>
+        
+        <button className="btn-num" onClick={() => handleNumber('4')}>4</button>
+        <button className="btn-num" onClick={() => handleNumber('5')}>5</button>
+        <button className="btn-num" onClick={() => handleNumber('6')}>6</button>
+        <button className="btn-op" onClick={() => handleOperator('-')}>-</button>
+        
+        <button className="btn-num" onClick={() => handleNumber('1')}>1</button>
+        <button className="btn-num" onClick={() => handleNumber('2')}>2</button>
+        <button className="btn-num" onClick={() => handleNumber('3')}>3</button>
+        <button className="btn-op" onClick={() => handleOperator('+')}>+</button>
+        
+        <button className="btn-num btn-zero" onClick={() => handleNumber('0')}>0</button>
+        <button className="btn-num" onClick={handleDecimal}>.</button>
+        <button className="btn-equals" onClick={calculate}>=</button>
+      </div>
     </div>
   )
 }
