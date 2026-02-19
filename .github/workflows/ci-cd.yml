@@ -21,7 +21,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t harishb2006/react-calculator:latest .
+          docker build -t harishb2006/react-calculator:latest ./client
 
       - name: Push Docker image
         run: |
