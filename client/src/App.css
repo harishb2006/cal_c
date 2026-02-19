@@ -1,35 +1,43 @@
-/* Reset basic styles for the body to center the calculator */
+/* App.css - Neon Cyberpunk Theme */
+
 body {
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f0f2f5;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  /* Deep dark purple/blue background */
+  background-color: #0d0e15; 
+  font-family: 'Courier New', Courier, monospace; /* Changed to a more "tech" font */
 }
 
 .calculator-container {
-  background: #1e1e1e;
+  background: #1a1b26;
   width: 320px;
   padding: 25px;
-  border-radius: 24px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  /* Glowing border effect */
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.1), 
+              inset 0 0 10px rgba(255, 0, 128, 0.1);
+  border: 1px solid #2a2b3d;
 }
 
 .calculator-display {
-  background: #2a2a2a;
-  color: #ffffff;
+  background: #0f1018;
+  /* Glowing cyan text */
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
   font-size: 3.5rem;
-  font-weight: 300;
+  font-weight: bold;
   text-align: right;
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 10px;
   margin-bottom: 25px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #24283b;
+  box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .calculator-keypad {
@@ -40,67 +48,93 @@ body {
 
 button {
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: bold;
   cursor: pointer;
   padding: 15px 0;
-  transition: all 0.15s ease-in-out;
+  transition: all 0.2s ease-in-out;
   user-select: none;
+  font-family: inherit;
 }
 
 button:active {
-  transform: scale(0.92);
+  transform: scale(0.9);
 }
 
 /* Number Buttons */
 .btn-num {
-  background: #333333;
-  color: #ffffff;
+  background: #24283b;
+  color: #a9b1d6;
+  box-shadow: 0 4px 0 #151621;
 }
 
 .btn-num:hover {
-  background: #444444;
+  background: #2f344d;
+  color: #ffffff;
+}
+
+.btn-num:active {
+  box-shadow: 0 0 0 #151621;
+  transform: translateY(4px);
 }
 
 /* Operator Buttons (+, -, *, /) */
 .btn-op {
-  background: #ff9f0a;
+  background: #ff007f; /* Hot Pink */
   color: #ffffff;
   font-size: 1.8rem;
+  box-shadow: 0 4px 0 #99004d, 0 0 15px rgba(255, 0, 127, 0.4);
 }
 
 .btn-op:hover {
-  background: #ffb03a;
+  background: #ff3399;
+}
+
+.btn-op:active {
+  box-shadow: 0 0 0 #99004d;
+  transform: translateY(4px);
 }
 
 /* Clear and Action Buttons */
 .btn-action {
-  background: #a5a5a5;
+  background: #00e5ff; /* Cyan */
   color: #000000;
+  box-shadow: 0 4px 0 #008b99, 0 0 15px rgba(0, 229, 255, 0.4);
 }
 
 .btn-action:hover {
-  background: #d4d4d4;
+  background: #4dffff;
+}
+
+.btn-action:active {
+  box-shadow: 0 0 0 #008b99;
+  transform: translateY(4px);
 }
 
 /* Special Button Spans */
 .btn-clear {
-  grid-column: span 3; /* Makes the Clear button wide */
+  grid-column: span 3; 
 }
 
 .btn-zero {
-  grid-column: span 2; /* Makes the Zero button wide */
+  grid-column: span 2; 
   text-align: left;
-  padding-left: 25px;
+  padding-left: 30px;
 }
 
 .btn-equals {
-  background: #ff9f0a;
-  color: #ffffff;
+  background: #bb9af7; /* Electric Purple */
+  color: #1a1b26;
   font-size: 1.8rem;
+  box-shadow: 0 4px 0 #7a5ab6, 0 0 15px rgba(187, 154, 247, 0.4);
 }
 
 .btn-equals:hover {
-  background: #ffb03a;
+  background: #cbb1f9;
+}
+
+.btn-equals:active {
+  box-shadow: 0 0 0 #7a5ab6;
+  transform: translateY(4px);
 }
